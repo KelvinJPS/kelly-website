@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Kelly 15 - Galería</title>
+    <meta name="description" content="Galería de fotos de Kelly XV">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/9b94065d6f.js" crossorigin="anonymous"></script>
+</head>
+
+<header>
+    <img class="logo" src="images/logo.png">
+    <nav>
+        <li><a style="color: #48cae4;" href="index.html">Inicio</a></li>
+        <li><a style="color: #e6ecc4;" href="lugar.html">Fiesta</a></li>
+        <li><a style="color: #c2694f;" href="gallery.html">Galeria</a></li>
+        <li><a style="color: #d35f97;" href="dress-code.html">Dress code</a></li>
+        <li><a style="color: #75925b;" href="regalo.html">Regalo</a></li>
+    </nav>
+</header>
+
+<body>
+    <h1 style="color: #e6ecc4;">
+   <i class="fa-solid fa-camera fa-2xl"></i>
+        Mis fotos
+    </h1>
+
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.25 PM.jpeg" alt="Recuerdo 1" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.25 PM(1).jpeg" alt="Recuerdo 2" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.25 PM(2).jpeg" alt="Recuerdo 3" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.25 PM(3).jpeg" alt="Recuerdo 4" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.25 PM(4).jpeg" alt="Recuerdo 5" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.25 PM(5).jpeg" alt="Recuerdo 6" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.26 PM.jpeg" alt="Recuerdo 7" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.26 PM(1).jpeg" alt="Recuerdo 8" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="images/galery/WhatsApp Image 2025-06-08 at 8.26.26 PM(2).jpeg" alt="Recuerdo 9" class="gallery-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-image">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        // Simple lightbox functionality
+        const galleryImages = document.querySelectorAll('.gallery-image');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.close');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.style.display = 'block';
+                lightboxImage.src = this.src;
+                lightboxCaption.textContent = this.alt;
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            lightbox.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
