@@ -267,3 +267,8 @@ h1 {
         font-size: 30px;
     }
 }
+
+#countdown_text {
+    font-size: 1.5em;
+    color: #e4cb4e;
+}
