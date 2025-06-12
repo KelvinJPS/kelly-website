@@ -55,31 +55,82 @@
         <span class="close">&times;</span>
         <img class="lightbox-content" id="lightbox-image">
         <div class="lightbox-caption" id="lightbox-caption"></div>
+        <div class="nav-arrow nav-prev" id="nav-prev">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="nav-arrow nav-next" id="nav-next">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
     </div>
 
     <script>
-        // Simple lightbox functionality
+        // Enhanced lightbox with navigation
         const galleryImages = document.querySelectorAll('.gallery-image');
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
         const closeBtn = document.querySelector('.close');
+        const prevBtn = document.getElementById('nav-prev');
+        const nextBtn = document.getElementById('nav-next');
+        
+        let currentImageIndex = 0;
 
-        galleryImages.forEach(img => {
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightbox.style.display = 'block';
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const currentImage = galleryImages[currentImageIndex];
+            lightboxImage.src = currentImage.src;
+            lightboxCaption.textContent = currentImage.alt;
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxImage();
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        galleryImages.forEach((img, index) => {
             img.addEventListener('click', function() {
-                lightbox.style.display = 'block';
-                lightboxImage.src = this.src;
-                lightboxCaption.textContent = this.alt;
+                openLightbox(index);
             });
         });
 
-        closeBtn.addEventListener('click', function() {
-            lightbox.style.display = 'none';
-        });
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
 
         window.addEventListener('click', function(event) {
             if (event.target === lightbox) {
-                lightbox.style.display = 'none';
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (lightbox.style.display === 'block') {
+                switch(event.key) {
+                    case 'ArrowLeft':
+                        showPrevImage();
+                        break;
+                    case 'ArrowRight':
+                        showNextImage();
+                        break;
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                }
             }
         });
     </script>
